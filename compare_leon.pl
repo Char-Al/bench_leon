@@ -35,6 +35,7 @@ my @directories;
 
 # Optional arguments
 my $output = $pwd."/";
+my $makeGraphs = '';
 
 # General arguments
 my $man 		= 0;
@@ -49,6 +50,7 @@ GetOptions(
 	'f|file=s'	 		=> \@files,
 	'd|directory=s'		=> \@directories,
 	'o|output=s'		=> \$output,
+	'g|makeGraphs'		=> \$makeGraphs,
 	'v|verbosity=i'		=> \$verbosity,
 	'help|?' 			=> \$help,
 	'm|man' 			=> \$man
@@ -204,6 +206,11 @@ foreach my $file (@files) {
 	$i++;
 }
 
+### LAUNCH make_Awesome_graphs.R
+if($makeGraphs) {
+	system("Rscript --vanilla make_Awesome_graphs.R ".$out."report.tab ".$out);
+}
+
 ##########################################################################################
 ##########################################################################################
 
@@ -278,6 +285,7 @@ This script compress and uncompress automatically some fastQ file.
 =head2 Optional arguments
 
 	-o,--output=repertory			You can specify the output repertory (default Current)
+	-g,--makeGraphs					Generate automatically awesome graphs with R and ggplot2
 
 =head1 AUTHORS
 

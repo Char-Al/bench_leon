@@ -1,4 +1,3 @@
-
 #!/usr/bin/env Rscript
 
 library(ggplot2)
@@ -7,8 +6,8 @@ library(reshape2)
 
 args = commandArgs(trailingOnly=TRUE)
 
-inputFile = args[0]
-inputFile = "/Users/charles/programmation/perl/bench_leon/example/report.tab"
+inputFile = args[1]
+# inputFile = "/Users/charles/programmation/perl/bench_leon/example/report.tab"
 
 
 Unicorn = read.table(inputFile,header=TRUE)
@@ -37,12 +36,10 @@ boxplot <- g + geom_boxplot(notch = FALSE) +
   theme(legend.position="none") +
   labs(list(title = paste("Compression rate between LEON\nand GZIP with",length(out),"fastQ of different size"), x = "Compression mode", y = "Ratio of compression (%)"))
 
-boxplot
+#boxplot
 # linear graph (compression function of the size)
 g <- ggplot(combined, aes(x=Size_fastQ,y=100-(value*100/Size_fastQ), colour = variable))
-#linear_compression <- g + geom_point() + geom_line() + coord_cartesian(ylim=c(0,100)) + scale_y_continuous(breaks = seq(0,100, by=10))+
-#  scale_x_continuous(breaks = c((1024^2)*100,(1024^2)*500,(1024^3),(1024^3)*5,(1024^3)*10), labels = c("100 Mo","500 Mo","1 Go","5 Go","10 Go"))
-linear_compression2 <- g + stat_summary(fun.y = mean, fun.ymin = function(x) mean(x) - sd(x), fun.ymax = function(x) mean(x) + sd(x), geom = "pointrange") + 
+linear_compression <- g + stat_summary(fun.y = mean, fun.ymin = function(x) mean(x) - sd(x), fun.ymax = function(x) mean(x) + sd(x), geom = "pointrange") + 
   coord_cartesian(ylim=c(0,100)) + 
   scale_y_continuous(breaks = seq(0,100, by=10)) +
   scale_x_continuous(breaks = c((1024^2)*100,(1024^3),(1024^3)*5,(1024^3)*10,(1024^3)*15,(1024^3)*20,(1024^3)*25), labels = c("100 Mo","1 Go","5 Go","10 Go","15 Go","20 Go","25 Go")) +
@@ -52,7 +49,6 @@ linear_compression2 <- g + stat_summary(fun.y = mean, fun.ymin = function(x) mea
 
 
 #linear_compression
-linear_compression2
 ############### TIME
 #Unicorn = read.table("/Users/charles/Documents/time_compress.tab",header=TRUE,sep = "\t")
 
@@ -69,9 +65,7 @@ mdat2$soft = gsub("\\w*_", "", mdat2$variable)
 #########################
 
 g <- ggplot(mdat2, aes(x=Size_fastQ,y=(value/60),colour=soft))
-#time <- g + geom_point() + facet_wrap(~type, scales = "free") + geom_line() +
-#  scale_x_continuous(breaks = c((1024^2)*100,(1024^2)*500,(1024^3),(1024^3)*5,(1024^3)*10), labels = c("100 Mo","500 Mo","1 Go","5 Go","10 Go"))
-#time
+
 time2 = g + facet_wrap(~type, scales = "free") + 
   scale_x_continuous(breaks = c((1024^2)*100,(1024^3),(1024^3)*5,(1024^3)*10,(1024^3)*15,(1024^3)*20,(1024^3)*25), labels = c("100 Mo","1 Go","5 Go","10 Go","15 Go","20 Go","25 Go")) + 
   stat_summary(fun.y = mean, geom = "line") + 
@@ -79,7 +73,7 @@ time2 = g + facet_wrap(~type, scales = "free") +
   theme(axis.text.x = element_text(angle = 50, hjust = 1.2, size =7)) +
   labs(list(title = "Time for compress/uncompress with LEON\nand GZIP depending on the size of FASTQ", x = "Size of initial FastQ", y = "Time (in minutes)"))
 
-time2
+#time
 ###########################
 # Save Graph
 png(filename="/Users/charles/programmation/perl/bench_leon/example/boxplot_compression.png")
@@ -87,9 +81,9 @@ plot(boxplot)
 dev.off()
 
 png(filename="/Users/charles/programmation/perl/bench_leon/example/point_compression.png")
-plot(linear_compression2)
+plot(linear_compression)
 dev.off()
 
 png(filename="/Users/charles/programmation/perl/bench_leon/example/point_time.png")
-plot(time2)
+plot(time)
 dev.off()
