@@ -20,7 +20,7 @@ This algorithm have been developed in order to compress text data, which means d
 
 LEON is a new software to compress data issue from NGS (Fasta and FastQ).
 LEON shares similarities with approaches using a reference genome to compress files.
-The LEON approach build the reference _de novo_, contrary to the other algorithms, with a _de Bruijn Graph_ whose the pieces are _k-mers_.
+The LEON approach build the reference _de novo_, contrary to the other algorithms, with a _de Bruijn Graph_ where the pieces are _k-mers_.
 The _de Bruijn Graph_ is heavy and it has to be stored with the compressed data, so the size could be a problem.
 To figure out this problem, the _de Bruijn Graph_ needs a good parametrization and the implementation is based on probabilistic data structure in order to reduce its size. Based on Bloom filters the _de Bruijn Graph_ is efficient to store large data.
 
@@ -41,11 +41,11 @@ There is no significant differences between the level 6 and 9 of GZIP, but these
 Now, we focus on the compression rate depending of the size of the original FastQ.
 We can notice a peak at 18 Go, corresponding to FastQ files that have larger reads (125 vs 100 pb).
 However this peak cannot change the analysis because all softwares show the same effect.
-Regarding these results, we can notice that LEON is more efficient than GZIP, especially the _"lossy"_ mode which is very stable in each case.
+Regarding these results, we can say that LEON is more efficient than GZIP, especially the _"lossy"_ mode which is very stable in each case.
 
 ![Evolution du taux de compression en fonction de la taille des fastQ d'origine](https://github.com/Char-Al/bench_leon/blob/master/example/point_compression.png "Evolution du taux de compression en fonction de la taille des fastQ d'origine")
 
-The time of compression and decompression depends of the size of initial file. The LEON _"lossy"_ and _"lossless"_ mode have a similar time than GZIP level 6 for the compression, while the time of GZIP level 9 for compression is longer (in some cases more than 2 times).
+The time of compression and decompression depends of the size of initial file. The LEON _"lossy"_ and _"lossless"_ mode and GZIP level 6 have similar time for the compression, while the time of GZIP level 9 for compression is longer (in some cases more than 2 times).
 LEON is less efficient for decompression and all GZIP level have almost the same time for decompression.
 
 ![Evolution du temps de compression en fonction de la taille des fastQ d'origine](https://github.com/Char-Al/bench_leon/blob/master/example/point_time.png "Evolution du temps de compression en fonction de la taille des fastQ d'origine")
