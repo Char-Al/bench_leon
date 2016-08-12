@@ -8,6 +8,9 @@ __Table of Contents__
 		- [GZIP](#gzip)
 	- [What is LEON ?](#what-is-leon-)
 	- [Comparison between compression of fastq by Gzip and LEON](#comparison-between-compression-of-fastq-by-gzip-and-leon)
+		- [Compression ratio fo each tools](#compression-ratio-fo-each-tools)
+		- [Compression ratio depending on the size of FASTQ](#compression-ratio-depending-on-the-size-of-fastq)
+		- [Time of compression/decompression](#time-of-compression-decompression)
 	- [Is LEON compression have an impact on SNPs/Indels calling ?](#is-leon-compression-have-an-impact-on-snpsindels-calling-)
 	- [Related publications](#related-publications)
 
@@ -44,11 +47,15 @@ With this little magic script, we produce some awesome graphs to compare the eff
 To compare these two softwares, we are interested in the global rate of compression, the rate of compression depending the size of the initial FastQ and the time of compression/decompression.
 We use FastQ from Human data with size between 100 Mo and 26 Go.
 
+### Compression ratio fo each tools
+
 We can see that the ratio compression of LEON is better than GZIP, regardless the size of the FastQ.
 In addition the _"lossy"_ mode of LEON have a ratio between 90 and 95% in each cases, almost 15% more than the other tools.
 There is no significant differences between the level 6 and 9 of GZIP, but these two have a wider variations.
 
 ![Boxplot comparant les taux de compression de gzip et LEON avec différentes options](https://github.com/Char-Al/bench_leon/blob/master/example/boxplot_compression.png "Boxplot comparant les taux de compression de gzip et LEON avec différentes options")
+
+### Compression ratio depending on the size of FASTQ
 
 Now, we focus on the compression rate depending of the size of the original FastQ.
 We can notice a peak at 18 Go, corresponding to FastQ files that have larger reads (125 vs 100 pb).
@@ -57,7 +64,10 @@ Regarding these results, we can say that LEON is more efficient than GZIP, espec
 
 ![Evolution du taux de compression en fonction de la taille des fastQ d'origine](https://github.com/Char-Al/bench_leon/blob/master/example/point_compression.png "Evolution du taux de compression en fonction de la taille des fastQ d'origine")
 
-The time of compression and decompression depends of the size of initial file. The LEON _"lossy"_ and _"lossless"_ mode and GZIP level 6 have similar time for the compression, while the time of GZIP level 9 for compression is longer (in some cases more than 2 times).
+### Time of compression/decompression
+
+The time of compression and decompression depends of the size of initial file.
+The LEON _"lossy"_ and _"lossless"_ mode and GZIP level 6 have similar time for the compression, while the time of GZIP level 9 for compression is longer (in some cases more than 2 times).
 LEON is less efficient for decompression and all GZIP level have almost the same time for decompression.
 
 ![Evolution du temps de compression en fonction de la taille des fastQ d'origine](https://github.com/Char-Al/bench_leon/blob/master/example/point_time.png "Evolution du temps de compression en fonction de la taille des fastQ d'origine")
