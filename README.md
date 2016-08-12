@@ -85,9 +85,8 @@ With LEON "_lossy"_ mode there is some differences.
 ![Differences of variant calling on GZIP, LEON lossless and LEON lossy file](https://github.com/Char-Al/bench_leon/blob/master/example/callingDiff.png "Differences of variant calling on GZIP, LEON lossless and LEON lossy file")
 
 ## Related publications
-* International Human Genome Sequencing Consortium. __Finishing the euchromatic sequence of the human genome.__ Nature 431, 931–945. issn: 1476-4687 (Oct. 2004).
-* Fleischmann, R. D. et al. __Whole-genome random sequencing and assembly of Haemophilus influenzae Rd.__ Science (New York, N.Y.) 269, 496– 512. issn: 0036-8075 (July 1995).
-* Sanger, F., Nicklen, S. & Coulson, A. R. __DNA sequencing with chain- terminating inhibitors.__ Proceedings of the National Academy of Sci- ences of the United States of America 74, 5463–5467. issn: 0027-8424 (Dec. 1977).
-* Zhang, Y. et al. __Light-weight reference-based compression of FASTQ data.__ BMC bioinformatics 16, 188. issn: 1471-2105 (2015).
-* Benoit, G. et al. __Reference-free compression of high throughput sequencing data with a probabilistic de Bruijn graph.__ BMC bioinformatics 16, 288. issn: 1471-2105 (2015).
-* Van Dijk, E. L., Auger, H., Jaszczyszyn, Y. & Thermes, C. __Ten years of next-generation sequencing technology.__ Trends in genetics: TIG 30, 418–426. issn: 0168-9525 (Sept. 2014).
+* International Human Genome Sequencing Consortium. [Finishing the euchromatic sequence of the human genome](http://www.nature.com/nature/journal/v431/n7011/full/nature03001.html) Nature 431, 931–945. issn: 1476-4687 (Oct. 2004).
+* Fleischmann, R. D. et al. [Whole-genome random sequencing and assembly of Haemophilus influenzae Rd](http://science.sciencemag.org/content/269/5223/496.long) Science (New York, N.Y.) 269, 496– 512. issn: 0036-8075 (July 1995).
+* Sanger, F., Nicklen, S. & Coulson, A. R. [DNA sequencing with chain- terminating inhibitors](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC431765/) Proceedings of the National Academy of Sci- ences of the United States of America 74, 5463–5467. issn: 0027-8424 (Dec. 1977).
+* Benoit, G. et al. [Reference-free compression of high throughput sequencing data with a probabilistic de Bruijn graph](http://www.biomedcentral.com/1471-2105/16/288) BMC bioinformatics 16, 288. issn: 1471-2105 (2015).
+* Van Dijk, E. L., Auger, H., Jaszczyszyn, Y. & Thermes, C. [Ten years of next-generation sequencing technology](http://www.sciencedirect.com/science/article/pii/S0168952514001127) Trends in genetics: TIG 30, 418–426. issn: 0168-9525 (Sept. 2014).
