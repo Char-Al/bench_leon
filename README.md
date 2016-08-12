@@ -1,5 +1,16 @@
 # Project : Compare LEON and GZIP for the FastQ compression
 
+__Table of Contents__
+
+- [Project : Compare LEON and GZIP for the FastQ compression](#)
+	- [Just a little story](#just-a-little-story)
+	- [What is currently done?](#what-is-currently-done)
+		- [GZIP](#gzip)
+	- [What is LEON ?](#what-is-leon-)
+	- [Comparison between compression of fastq by Gzip and LEON](#comparison-between-compression-of-fastq-by-gzip-and-leon)
+	- [Is LEON compression have an impact on SNPs/Indels calling ?](#is-leon-compression-have-an-impact-on-snpsindels-calling-)
+	- [Related publications](#related-publications)
+
 ## Just a little story
 
 In the 1970's Sanger, Maxam, Gilbert and colleagues developed a rapid method to sequence the DNA. 
@@ -57,6 +68,11 @@ To studying the impact of compression we will used a set of 12 FastQ issue from 
 All FastQ have been compressed by LEON _"lossy"_, LEON _"lossless"_, and GZIP (default : level 6), then decompressed and recompressed with GZIP (default).
 The last recompression is usefull to perform the variant calling with Nenufaar (pipeline by David BAUX).
 
+On the next graph we can see the differences between file compressed with GZIP, LEON _"lossless"_ and LEON _"lossy"_.
+We notice than there is no differences between GZIP and LEON _"lossless"_.
+With LEON "_lossy"_ mode there is some differences.
+
+![Differences of variant calling on GZIP, LEON lossless and LEON lossy file](https://github.com/Char-Al/bench_leon/blob/master/example/callingDiff.png "Differences of variant calling on GZIP, LEON lossless and LEON lossy file")
 
 ## Related publications
 * International Human Genome Sequencing Consortium. __Finishing the euchromatic sequence of the human genome.__ Nature 431, 931–945. issn: 1476-4687 (Oct. 2004).
