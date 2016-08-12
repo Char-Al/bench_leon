@@ -9,7 +9,8 @@ args = commandArgs(trailingOnly=TRUE)
 inputFile = args[1]
 # inputFile = "/Users/charles/programmation/perl/bench_leon/example/report.tab"
 
-
+outputRepertory = args[1]
+outputRepertory = "/Users/charles/programmation/perl/bench_leon/example/"
 Unicorn = read.table(inputFile,header=TRUE)
 
 
@@ -66,7 +67,7 @@ mdat2$soft = gsub("\\w*_", "", mdat2$variable)
 
 g <- ggplot(mdat2, aes(x=Size_fastQ,y=(value/60),colour=soft))
 
-time2 = g + facet_wrap(~type, scales = "free") + 
+time = g + facet_wrap(~type, scales = "free") + 
   scale_x_continuous(breaks = c((1024^2)*100,(1024^3),(1024^3)*5,(1024^3)*10,(1024^3)*15,(1024^3)*20,(1024^3)*25), labels = c("100 Mo","1 Go","5 Go","10 Go","15 Go","20 Go","25 Go")) + 
   stat_summary(fun.y = mean, geom = "line") + 
   stat_summary(fun.y = mean, fun.ymin = function(x) mean(x) - sd(x), fun.ymax = function(x) mean(x) + sd(x), geom = "pointrange")+
@@ -81,11 +82,11 @@ plot(boxplot)
 dev.off()
 
 png(filename=paste0(outputRepertory,"point_compression.png"))
-plot(linear_compression2)
+plot(linear_compression)
 dev.off()
 
 png(filename=paste0(outputRepertory,"point_time.png"))
-plot(time2)
+plot(time)
 dev.off()
 
 ###################################
@@ -133,7 +134,7 @@ ann_text_LESS2 <- data.frame(variable = c("AB_in_VCF3","AB_in_VCF3"),
 
 mdat2$value2 = mdat2$value - mdat2$AB_in_VCF1
 g <- ggplot(mdat2,aes(x = variable,y=value2,colour=variable))
-g + geom_boxplot() + 
+callingDiff <- g + geom_boxplot() + 
   facet_grid(.~Type) +
   annotate("rect", 
            xmax = 3.1,
@@ -151,3 +152,6 @@ g + geom_boxplot() +
             x=3.35, 
             y=0)
 
+png(filename=paste0(outputRepertory,"callingDiff.png"))
+plot(callingDiff)
+dev.off()
