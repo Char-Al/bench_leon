@@ -1,4 +1,5 @@
-VCF	PASS	OTHER	NA	TOTAL (PASS+OTHER)
-1	742	47	92	789
-2	742	47	92	789
-3	745	46	90	791
+         VCF         | PASS | OTHER |  NA  | TOTAL (PASS+OTHER)
+-------------------- | :--: | :---: | :--: | :----------------:
+      __GZIP__       |  759 |  110  |  12  |         869
+_LEON _"lossless"___ |  759 |  110  |  12  |         869
+  _LEON_"lossy"___   |  767 |  103  |  11  |         870

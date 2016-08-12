@@ -91,7 +91,7 @@ dev.off()
 
 ###################################
 PinkUnicorn = read.table("/Users/charles/programmation/perl/bench_leon/example/variants.txt",header=TRUE,sep = "\t")
-mdat2 = melt(PinkUnicorn,id.vars = c("Variant","Type","AB_in_VCF1"), measure.vars = c("AB_in_VCF1","AB_in_VCF2","AB_in_VCF3"))
+mdat2 = melt(PinkUnicorn2,id.vars = c("Variant","Type","AB_in_VCF1","VCF3_filter"), measure.vars = c("AB_in_VCF1","AB_in_VCF2","AB_in_VCF3"))
 
 mdat2$value2 = mdat2$value - mdat2$AB_in_VCF1
 

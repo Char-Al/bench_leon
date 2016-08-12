@@ -76,13 +76,25 @@ LEON is less efficient for decompression and all GZIP level have almost the same
 
 To studying the impact of compression we will used a set of 12 FastQ issue from Human data.
 All FastQ have been compressed by LEON _"lossy"_, LEON _"lossless"_, and GZIP (default : level 6), then decompressed and recompressed with GZIP (default).
-The last recompression is usefull to perform the variant calling with Nenufaar (pipeline by David BAUX).
+The last recompression is usefull to perform the variant calling with Nenufaar v2.3 (pipeline by David BAUX).
 
-On the next graph we can see the differences between file compressed with GZIP, LEON _"lossless"_ and LEON _"lossy"_.
-We notice than there is no differences between GZIP and LEON _"lossless"_.
+The next table show the number of SNV and indels call for each VCF issue from the three compression methods.
+We notice that LEON _"lossy"_ mode have 23 SNV and indels which differ than others.
+Indeed, 12 ponctual mutations are found only with GZIP and LEON _"lossless"_ mode and 11 with LEON _"lossy"_.
+
+VCF                   | PASS | OTHER |  NA  | TOTAL (PASS+OTHER)
+--------------------- | :--: | :---: | :--: | :----------------:
+       __GZIP__       |  759 |  110  |  12  |         869
+__LEON _"lossless"___ |  759 |  110  |  12  |         869
+ __LEON _"lossy"___   |  767 |  103  |  11  |         870
+
+The following chart show the differences between the AB (Allelic Ballance) of each SNV/indel.
+The AB from the VCF issue of GZIP (VCF1).
+We notice than there is no differences between GZIP and LEON _"lossless"_ (VCF2).
 With LEON "_lossy"_ mode there is some differences.
 
 ![Differences of variant calling on GZIP, LEON lossless and LEON lossy file](https://github.com/Char-Al/bench_leon/blob/master/example/callingDiff.png "Differences of variant calling on GZIP, LEON lossless and LEON lossy file")
+
 
 ## Related publications
 * International Human Genome Sequencing Consortium. [Finishing the euchromatic sequence of the human genome](http://www.nature.com/nature/journal/v431/n7011/full/nature03001.html) Nature 431, 931–945. issn: 1476-4687 (Oct. 2004).
