@@ -7,7 +7,7 @@ library(reshape2)
 args = commandArgs(trailingOnly=TRUE)
 
 inputFile = args[1]
-# inputFile = "/Users/charles/programmation/perl/bench_leon/example/report.tab"
+inputFile = "/Users/charles/programmation/perl/bench_leon/example/report.tab"
 
 outputRepertory = args[1]
 outputRepertory = "/Users/charles/programmation/perl/bench_leon/example/"
@@ -77,15 +77,15 @@ time = g + facet_wrap(~type, scales = "free") +
 #time
 ###########################
 # Save Graph
-png(filename=paste0(outputRepertory,"/boxplot_compression.png"))
+png(filename=paste0(outputRepertory,"/boxplot_compression.png"), width = 960, height = 480)
 plot(boxplot)
 dev.off()
 
-png(filename=paste0(outputRepertory,"point_compression.png"))
+png(filename=paste0(outputRepertory,"point_compression.png"), width = 960, height = 480)
 plot(linear_compression)
 dev.off()
 
-png(filename=paste0(outputRepertory,"point_time.png"))
+png(filename=paste0(outputRepertory,"point_time.png"), width = 960, height = 480)
 plot(time)
 dev.off()
 
@@ -152,6 +152,6 @@ callingDiff <- g + geom_boxplot() +
             x=3.35, 
             y=0)
 
-png(filename=paste0(outputRepertory,"callingDiff.png"))
+png(filename=paste0(outputRepertory,"callingDiff.png"), width = 960, height = 480)
 plot(callingDiff)
 dev.off()
