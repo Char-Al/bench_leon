@@ -76,14 +76,78 @@ time2 = g + facet_wrap(~type, scales = "free") +
 #time
 ###########################
 # Save Graph
-png(filename="/Users/charles/programmation/perl/bench_leon/example/boxplot_compression.png")
+png(filename=paste0(outputRepertory,"/boxplot_compression.png"))
 plot(boxplot)
 dev.off()
 
-png(filename="/Users/charles/programmation/perl/bench_leon/example/point_compression.png")
-plot(linear_compression)
+png(filename=paste0(outputRepertory,"point_compression.png"))
+plot(linear_compression2)
 dev.off()
 
-png(filename="/Users/charles/programmation/perl/bench_leon/example/point_time.png")
-plot(time)
+png(filename=paste0(outputRepertory,"point_time.png"))
+plot(time2)
 dev.off()
+
+###################################
+PinkUnicorn = read.table("/Users/charles/programmation/perl/bench_leon/example/variants.txt",header=TRUE,sep = "\t")
+mdat2 = melt(PinkUnicorn,id.vars = c("Variant","Type","AB_in_VCF1"), measure.vars = c("AB_in_VCF1","AB_in_VCF2","AB_in_VCF3"))
+
+mdat2$value2 = mdat2$value - mdat2$AB_in_VCF1
+
+SNV <- rle(sort(subset(mdat2$value2,mdat2$variable == "AB_in_VCF3" & mdat2$Type =="snv")))
+SNV_df <- data.frame(number=SNV$values, n=SNV$lengths)
+INDEL <- rle(sort(subset(mdat2$value2,mdat2$variable == "AB_in_VCF3" & mdat2$Type =="indel")))
+INDEL_df <- data.frame(number=INDEL$values, n=INDEL$lengths)
+
+ann_text_OUT <- data.frame(variable = c("AB_in_VCF3","AB_in_VCF3"),
+                           value2 = c(1,1),
+                           lab=c(paste0("Equal: ",
+                                        sum(subset(INDEL_df$n,
+                                                   INDEL_df$number ==0)),
+                                        "\nNot equal: ",
+                                        sum(subset(INDEL_df$n, 
+                                                   INDEL_df$number !=0))),
+                                 paste0("Equal: ",
+                                        sum(subset(SNV_df$n,
+                                                   SNV_df$number ==0)),
+                                        "\nNot equal: ",
+                                        sum(subset(SNV_df$n, 
+                                                   SNV_df$number !=0)))), 
+                           Type = factor(c("indel","snv"),
+                                         levels = c("indel","snv")))
+
+ann_text_LESS2 <- data.frame(variable = c("AB_in_VCF3","AB_in_VCF3"),
+                             value2 = c(1,1),
+                             lab=c(paste0("less 2%:\n ",
+                                          sum(subset(INDEL_df$n,
+                                                     INDEL_df$number !=0 & 
+                                                       INDEL_df$number<=0.02 & 
+                                                       INDEL_df$number>=-0.02))),
+                                   paste0("less 2%:\n ",
+                                          sum(subset(SNV_df$n, 
+                                                     SNV_df$number !=0 & 
+                                                       SNV_df$number<=0.02 & 
+                                                       SNV_df$number>=-0.02)))), 
+                             Type = factor(c("indel","snv"),
+                                           levels = c("indel","snv")))
+
+mdat2$value2 = mdat2$value - mdat2$AB_in_VCF1
+g <- ggplot(mdat2,aes(x = variable,y=value2,colour=variable))
+g + geom_boxplot() + 
+  facet_grid(.~Type) +
+  annotate("rect", 
+           xmax = 3.1,
+           xmin = 2.9, 
+           ymin = -0.02, 
+           ymax = 0.02, 
+           colour = "red", 
+           alpha=0.2) + 
+  geom_text(data = ann_text_OUT,
+            aes(label =lab), size =4) + 
+  geom_text(data = ann_text_LESS2,
+            aes(label =lab), 
+            colour = "red", 
+            size =3, 
+            x=3.35, 
+            y=0)
+
