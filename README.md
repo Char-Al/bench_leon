@@ -81,17 +81,20 @@ The last recompression is usefull to perform the variant calling with Nenufaar v
 The next table show the number of SNV and indels call for each VCF issue from the three compression methods.
 We notice that LEON _"lossy"_ mode have 23 SNV and indels which differ than others.
 Indeed, 12 ponctual mutations are found only with GZIP and LEON _"lossless"_ mode and 11 with LEON _"lossy"_.
+However most of these 23 mutations are in repeated sequence and this difference may be caused by a shift of few nucleotides.
 
 VCF                   | PASS | OTHER |  NA  | TOTAL (PASS+OTHER)
 --------------------- | :--: | :---: | :--: | :----------------:
-       __GZIP__       |  759 |  110  |  12  |         869
+__GZIP__              |  759 |  110  |  12  |         869
 __LEON _"lossless"___ |  759 |  110  |  12  |         869
- __LEON _"lossy"___   |  767 |  103  |  11  |         870
+__LEON _"lossy"___    |  767 |  103  |  11  |         870
 
 The following chart show the differences between the AB (Allelic Ballance) of each SNV/indel.
 The AB from the VCF issue of GZIP (VCF1).
 We notice than there is no differences between GZIP and LEON _"lossless"_ (VCF2).
 With LEON "_lossy"_ mode there is some differences.
+The AB of 84 indels, on 192 indels in totals, is different but most of these (66) have an AB wich differ less than 2%.
+We can have the same conclusion with SNV with 344 wich differ, on a total of 666 SNV, and 318 wich differ less than 2%.
 
 ![Differences of variant calling on GZIP, LEON lossless and LEON lossy file](https://github.com/Char-Al/bench_leon/blob/master/example/callingDiff.png "Differences of variant calling on GZIP, LEON lossless and LEON lossy file")
 
