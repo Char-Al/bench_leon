@@ -17,6 +17,9 @@ no warnings 'experimental::smartmatch';
 
 use File::stat;
 
+# Perl for signature
+use Term::ANSIColor;
+
 
 ##########################################################################################
 ##########################################################################################
@@ -201,14 +204,14 @@ foreach my $file (@files) {
 	
 	print OUT $line;
 	
-	system("rm $out/$name*");
+	system("rm $output/$name*");
 	
 	$i++;
 }
 
 ### LAUNCH make_Awesome_graphs.R
 if($makeGraphs) {
-	system("Rscript --vanilla make_Awesome_graphs.R ".$out."report.tab ".$out);
+	system("Rscript --vanilla make_Awesome_graphs.R ".$output."report.tab ".$output);
 }
 
 ##########################################################################################
@@ -293,6 +296,11 @@ This script compress and uncompress automatically some fastQ file.
 
 =item -
 Charles VAN GOETHEM
+
+		      _ __,~~~/
+		,~~`( )_( )-\|
+		    |/|  `--.
+		    ! !  !
 
 =back
 
