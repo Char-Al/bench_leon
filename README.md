@@ -33,7 +33,7 @@ This algorithm have been developed in order to compress text data, which means d
 
 ## What is LEON ?
 
-LEON is a new software to compress data issue from NGS (Fasta and FastQ).
+[LEON](https://github.com/GATB/leon) is a new software to compress data issue from NGS (Fasta and FastQ).
 LEON shares similarities with approaches using a reference genome to compress files.
 The LEON approach build the reference _de novo_, contrary to the other algorithms, with a _de Bruijn Graph_ where the pieces are _k-mers_.
 The _de Bruijn Graph_ is heavy and it has to be stored with the compressed data, so the size could be a problem.
